@@ -1,0 +1,11 @@
+= Meeting Summary
+
+The Meeting Summary template is designed to make it easier to create a structured document that can be used to direct
+a meeting.
+
+== Usage
+
+[source,bash]
+----
+gucci -f cfg.yaml template.adoc.tpl  | asciidoctor-pdf  - > minutes.pdf
+----

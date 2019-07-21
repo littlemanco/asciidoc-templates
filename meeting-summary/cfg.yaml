@@ -1,0 +1,17 @@
+---
+subject: "Example Meeting"
+date: "1970-01-01"
+location: "Berlin, Germany"
+length: "60m"
+facilitator: "Andrew Howden"
+attendees:
+  - name: "Example User"
+    role: "Developer"
+items: 
+  - title: "Example action item"
+    timebox: "5m"
+    introduced: "Today"
+    sponsoredBy: "Andrew Howden"
+    summary: |
+      This item introduces the topic of widget management. Widget management is the process of collecting widgets
+      and managing them, as a manageable widget
