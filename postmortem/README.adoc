@@ -1,0 +1,10 @@
+= Post Mortem
+
+The Post Mortem is designed to assist in the investigation of and document the results of system failures.
+
+== Usage
+
+[source,bash]
+----
+gucci -f cfg.yaml template.adoc.tpl  | asciidoctor-pdf  - > post-mortem.pdf
+----

@@ -1,0 +1,92 @@
+---
+# Note: Configuration examples are case sensitive
+
+# The 'title' should summarize the post mortem
+title: "__TITLE__"
+
+# The date the incident occurred
+date: "__DATE__"
+
+discovery:
+  chat:
+    link: "https://__CHAT_TOOL__/__LINK__"
+    channel: "#__CHANNEL__"
+  bugTracker:
+    link: "https://__BUG_TRACKER__/__FILTER__/"
+
+# The different people involved in an incident
+people:
+  - name: "__OPERATIONS_NAME__"
+    email: "__OPERATIONS_EMAIL__"
+    roles:
+      - "Operations"
+  - name: "__COMMUNICATIONS_NAME__"
+    email: "__COMMUNICATIONS_EMAIL__"
+    roles:
+      - "Communication"
+  # By convention, put "Command" last as they shouldn't really be the "start of the show". Goal is to anonymise people
+  # and focus on effort.
+  - name: "__INCIDENT_COMMAND_NAME__"
+    email: "__INCIDENT_COMMAND_EMAIL__"
+    roles:
+      - "Command"
+      - "Author"
+
+timeline:
+    # The date in the US format (1970-01-01)
+  - date: "1970-01-01"
+    # The time in hh:mm(:ss)
+    time: "00:00"
+    # A description of the thing that happened
+    event: "__EVENT__"
+
+# A summary of the incident. Usually best written after the rest of the document.
+abstract: |
+  __ABSTRACT__
+
+# A list of the "factors" (the things) that influenced the incident in some way.
+factors:
+    # Whether the factor was:
+    # - Contributing: Made the outage worse in some way
+    # - Mitigating: Made the outage better in some way
+  - type: "Contributing"
+    # Whether the impact on the incident was:
+    # - Primary:   Directly created or enforced the incident
+    # - Secondary: Did not directly create or enforce the incident, but did hinder recovery
+    impact: "__IMPACT__"
+    # A title expressing the summary of the factor
+    title: "__TITLE__"
+    # A description of how that impact manifested
+    description: |
+      __DESCRIPTION__
+    # A reference to tasks that need to be done for this factor to be addressed in future post mortems
+    bugTracker:
+      link: "https://__BUG_TRACKER__/__TICKET_REFERENCE__"
+
+# A risk is a thing that "did not happen but came close to happening". For example, given a cascading failure
+# it might be caught in time to prevent a major outage but highlight upstream limitations to the service that
+# should be addressed.
+risks:
+    # See above for field descriptions
+  - title: "__TITLE__"
+    description: |
+      __DESCRIPTION__
+    bugTracker:
+      link: "https://__BUG_TRACKER__/__TICKET_REFERENCE__"
+
+impacts:
+  - title: "__TITLE__"
+    # Those who were impacted. Should be one of:
+    # - Customer
+    # - Business
+    # - Team
+    subject: "__SUBJECT__"
+    # The description should be a summary of how it impacted that subject, as well as where a curious reader
+    # can go to verify that impact.
+    description: |
+      __DESCRIPTION__
+
+references:
+  - title: "__REFERENCE_TITLE__"
+    content: |
+      __REFERENCE_CONTENT__
