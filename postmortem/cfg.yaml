@@ -14,6 +14,23 @@ discovery:
   bugTracker:
     link: "https://__BUG_TRACKER__/__FILTER__/"
 
+# A list of the alert references from alerting system. For example,
+# - RDSCPUHigh
+alerts: []
+
+# The affected services. For example,
+systems: []
+# For example,
+# - fqdn: "www.littleman.co"
+#   type: (website|api)
+
+# Tags that are associated with the service that do not belong elsewhere in the stack. For example,
+# - docker
+# - kuberntes
+# - ec2
+# - aws
+tags: []
+
 # The different people involved in an incident
 people:
   - name: "__OPERATIONS_NAME__"
