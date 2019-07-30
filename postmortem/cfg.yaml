@@ -4,8 +4,8 @@
 # The 'title' should summarize the post mortem
 title: "__TITLE__"
 
-# The date the incident occurred
-date: "__DATE__"
+output:
+  withHelp: true
 
 discovery:
   chat:

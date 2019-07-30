@@ -8,13 +8,22 @@
 {{- end }}
 {{- end }}
 
+{{- if eq true .output.withHelp }}
+
 == What is this document?
 
 A post mortem is a write up of a system or process failure such that causes can be found and tasks created to prevent
 this class of issues from happening in future. It is blameless, and as such does not focus on past events as they
 pertain to “Could’ve”, “Should’ve”.
+{{- end }}
 
-== Abstract
+== Executive Summary
+{{- if eq true .output.withHelp }}
+
+NOTE: This is a short summary of the incident designed for a quick, high level overview of the issues. It is as far
+      as casual readers need to understand with the rest of the document serving instead to help practitioners
+      fully understand and extract value of an incident.
+{{- end }}
 
 {{ .abstract }}
 
@@ -25,8 +34,21 @@ All related work can be tracked in the canonical bug tracker at:
 {{ $allowedTypes := list "Contributing" "Mitigating" }}
 {{ $factors := .factors }}
 {{ range $allowedType := $allowedTypes }}
-
+<<<
 == {{ $allowedType }} Factors
+
+{{ if eq "Contributing" $allowedType }}
+NOTE: This is the "root cause" section of a post mortem. However, the notion of a root cause is not a good model for
+      how complex systems operate. Rather, complex systems are always in a state of failure¹ and multiple failures
+      generally chain together to create a "user facing" failure². Accordingly, each of those failures should be
+      examined for future risk and either mitigated or deliberately accepted.
+{{- end }}
+
+{{ if eq "Mitigating" $allowedType }}
+NOTE: Things do not only go "wrong", they also go "right"³. Previous mitigations put in place may be demonstrably
+      successful or the organization may have a unique level of subject matter expertise that reduces the severity
+      of the issue. These are equally good lines of inquiry for lessons to apply to the broader organization.
+{{- end }}
 
 {{- /*
  * At the time of writing, Golang does not support "break" or "continue" in templates. See:
@@ -50,6 +72,7 @@ See:
 
 {{- end }}
 
+<<<
 == Ongoing Risks
 
 {{- range .risks }}
@@ -140,3 +163,10 @@ See:
 
 {{ end }}
 
+{{ if eq true .output.withHelp }}
+=== Further Reading
+
+1. K. Estreich, "The myth of the root cause", https://www.scalyr.com/blog/the-myth-of-the-root-cause-how-complex-web-systems-fail/, Oct-2016
+2. R. Cook, "How Complex Systems Fail", https://web.mit.edu/2.75/resources/random/How%20Complex%20Systems%20Fail.pdf, 1998
+3. S. Dekker, "Why do things go right", http://www.safetydifferently.com/why-do-things-go-right/, Sep-2018
+{{- end }}
