@@ -1,5 +1,8 @@
-= Post mortem of the {{ .title }}: {{ .date }}
+{{- $lastEvent := .lifeCycle | last }}
+{{- $firstEvent := .lifeCycle | first }}
+= Post mortem of the {{ .title }}: {{ toDate "2006-01-02T15:04:05Z07:00" $firstEvent.timeStamp | date "01/02/06"}}
 :title-page:
+:icons: font
 {{- range $person := .people}}
 {{- range $role := $person.roles}}
 {{- if eq $role "Author" }}
@@ -29,7 +32,13 @@ NOTE: This is a short summary of the incident designed for a quick, high level o
 
 All related work can be tracked in the canonical bug tracker at:
 
-- {{ .discovery.bugTracker.link }}
+- +++{{ .discovery.bugTracker.link }}+++
+
+{{- if ne $lastEvent.type "RESOLUTION" }}
+
+WARNING: This post mortem is currently only in "temporary resolution". It remains open until all items identified in it
+         have been explicitly addressed.
+{{- end }}
 
 {{ $allowedTypes := list "Contributing" "Mitigating" }}
 {{ $factors := .factors }}
@@ -100,9 +109,9 @@ See:
 
 [cols="3,12"]
 |===
-| Time     | Event
-{{- range .timeline }}
-| {{ .date }} {{ .time }} | {{ .event }}
+| Time             | Event
+{{- range .lifeCycle }}
+| {{ toDate "2006-01-02T15:04:05Z07:00" .timeStamp | date "2006/01/02 03:04" }} | {{ .description }}
 {{- end }}
 |===
 

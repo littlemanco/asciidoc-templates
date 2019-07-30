@@ -49,13 +49,21 @@ people:
       - "Command"
       - "Author"
 
-timeline:
-    # The date in the US format (1970-01-01)
-  - date: "1970-01-01"
-    # The time in hh:mm(:ss)
-    time: "00:00"
+lifeCycle:
+    # A date / time pairing formatted in the RFC3399 way.
+  - timeStamp: "2019-07-23T12:01:00+02:00"
+    # An enumerable that describes the nature of the recording. Can be one of:
+    #
+    # DECLARATION: When an incident is spawned
+    # TEMPORARY_RESOLUTION: When an incident is no longer affecting production users
+    # REVIEW: When a team sits together to review how the incident progressed.
+    # RESOLUTION: When all items in an incident have been dealt with
+    # INTERVENTION: Some change to the production system that is designed to address the issue
+    # DISCOVERY: Some new information yielded from the system that made the problem clearer
+    #
+    type: DECLARATION
     # A description of the thing that happened
-    event: "__EVENT__"
+    description: "__EVENT__"
 
 # A summary of the incident. Usually best written after the rest of the document.
 abstract: |
